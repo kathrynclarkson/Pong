@@ -4,6 +4,17 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style>
+		.scores {
+			color: #fff;
+			font-size: 50px;
+			font-family: sans-serif;
+		}
+		.scores div {
+			display: inline-block;
+		}
+		.scores div:last-child {
+			float: right;
+		}
 		#game {
 			width: 800px;
 			height: 600px;
@@ -33,6 +44,7 @@
 			width: 50px;
 			height: 70px;
 			position: absolute;
+			bottom: 0;
 		}
 	</style>
 </head>
@@ -42,6 +54,10 @@
 		<div id="right_paddle"></div>
 		<div id="ball"></div>
 		<div id="pause-button">||</div>
+		<div class="scores">
+			<div id="score1">0</div>
+			<div id="score2">0</div>
+		</div>
 	</div>
 
 	<script>
@@ -173,8 +189,8 @@ function update() {
 		/*
 		TODO:
 
-		1. Get the computer player working
-		2. Get the ball to bounce off of the computer player's paddle
+		1. --Get the computer player working
+		2. --Get the ball to bounce off of the computer player's paddle
 		3. Display the score somehow
 		4. If the ball goes off the side, increase the score for the other player
 		5. When the ball goes off the side, reset the game so the ball is in the middle
