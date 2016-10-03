@@ -80,6 +80,9 @@
 		var ball_vx = 2;
 		var ball_vy = 2;
 
+		var player1score = 0;
+		var computerscore = 0;
+
 		function pause() {
 			paused = true;
 		}
@@ -97,6 +100,9 @@
 
 			ball.style.top = ball_y + "px";
 			ball.style.left = ball_x + "px";
+
+			document.getElementById("score1").innerHTML=player1score
+			document.getElementById("score2").innerHTML = computerscore
 		}
 
 		function updateBall(){
@@ -122,14 +128,14 @@
 				&& ball_y + 20 > left_paddle_y
 				&& ball_vx < 0) {
 				ball_vx *= -1;
-			}
-			if (ball_x > right_paddle_x + 20
-				&& ball_y < right_paddle_y + 100
-				&& ball_x + 20 < right_paddle_x
-				&& ball_y + 20 > right_paddle_y
-				&& ball_vx > 0) {
-				ball_vx *= -1;
-			}
+		}
+		if (ball_x > right_paddle_x + 20
+			&& ball_y < right_paddle_y + 100
+			&& ball_x + 20 < right_paddle_x
+			&& ball_y + 20 > right_paddle_y
+			&& ball_vx > 0) {
+			ball_vx *= -1;
+	}
 
 			// My code
 			if (ball_x >= (right_paddle_x - ball.offsetWidth)) {
@@ -142,10 +148,10 @@
 			}
 		}
 
-function paddle2TrackBall() {
-	var ballTop = ball.offsetTop;
-	var ballBottom = ballTop + ball.offsetHeight;
-	var paddle2Bottom = right_paddle.offsetTop + right_paddle.offsetHeight;
+		function paddle2TrackBall() {
+			var ballTop = ball.offsetTop;
+			var ballBottom = ballTop + ball.offsetHeight;
+			var paddle2Bottom = right_paddle.offsetTop + right_paddle.offsetHeight;
 	// debugger;
 	if (ballTop > paddle2Bottom) {
 		right_paddle_y += 10;
@@ -158,9 +164,26 @@ function update() {
 	updateBall();
 	checkCollision();
 	paddle2TrackBall();
+	checkBallPosition();
 }
+function checkBallPosition() {
+	
+	if (ball_x < 0) {
+		computerscore++
+		resetBallPosition();
+	}
+	if (ball_x > 800) {
+		player1score++ 
+		resetBallPosition();
 
+	}
 
+}
+function resetBallPosition(){
+	ball_x = 392;
+	ball_y = 297;
+	ball_vx = -ball_vx
+}
 		// Game Loop
 		// Where everything runs!
 		function loop() {
